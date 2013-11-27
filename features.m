@@ -1,10 +1,11 @@
 function [ Features, Iclustered ] = features(I, top)
 
 % Make it small.
-Ismall = imresize(I, 0.3);
+scale = 400 / size(I, 1);
+Ismall = imresize(I, scale);
 
 % Find clusters.
-Iclustered = vl_quickseg(Ismall, 0.2, 5, 30);
+Iclustered = vl_quickseg(Ismall, 0.5, 5, 30);
 
 % We need an array of hues only.
 Iarray = rgb2hsv(Iclustered);
